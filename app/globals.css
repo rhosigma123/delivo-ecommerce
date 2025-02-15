@@ -2,26 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.fsdfP {
+  color: hsl(0, 0%, 98%);
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --fontPrimary: 0, 0%, 26%;
+    --fontSecondary: 0, 0%, 40%;
+    --modalHeader: 230, 90%, 96%;
+    --background: 225, 100%, 98%;
+    --accent: 344, 78%, 56%;
+    --secondary: 0, 0%, 98%;
+    --foreground: 0 0% 3.9%;
+    --card: 225, 100%, 98%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 225, 100%, 98%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 215, 100%, 24%;
+    --primary-foreground: 0 0% 98%;
+    --secondary-foreground: 215, 100%, 24%;
+    --muted: 344, 78%, 56%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent-foreground: 215, 100%, 24%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 215, 100%, 24%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.delivo__container {
+  margin-right: auto;
+  margin-left: auto;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@media (min-width: 768px) {
+  .delivo__container {
+    width: 750px;
   }
+}
+
+@media (min-width: 992px) {
+  .delivo__container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .delivo__container {
+    width: 1000px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .delivo__container {
+    width: 1100px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .delivo__container {
+    width: 1000;
+  }
+}
+
+@media (min-width: 1920px) {
+  .delivo__container {
+    width: 1300px;
+  }
+}
+
+.bgQuickCraves {
+  background: linear-gradient(180deg, rgba(255, 241, 243, 0) 0%, #fff1f3 100%);
 }
