@@ -12,37 +12,45 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { Info } from "lucide-react";
 
-const Info = () => {
+const InfoSheet = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">OrderDetails</Button>
+        <button>
+          <Info />
+        </button>
       </SheetTrigger>
-      <SheetContent>
-        <SheetHeader>
-          <SheetTitle>Edit OrderDetails</SheetTitle>
-          <SheetDescription>
-            Make changes to your OrderDetails here. Click save when you're done.
-          </SheetDescription>
-        </SheetHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="name" className="text-right">
-              Name
-            </Label>
-            <Input id="name" value="Pedro Duarte" className="col-span-3" />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="username" className="text-right">
-              Username
-            </Label>
-            <Input id="username" value="@peduarte" className="col-span-3" />
-          </div>
+      <SheetContent className="bg-white p-5 grid content-between">
+        <div>
+          <SheetHeader>
+            <SheetTitle className="text-fontPrimary text-xl font-bold mb-4">
+              How It Works
+            </SheetTitle>
+          </SheetHeader>
+          <ol className="list-outside pl-5 grid gap-3">
+            <li className="list-decimal">
+              Lorem ipsum dolor sit amet consectetur adipisicing eolt. Autem,
+              possimus impedit modi tempora, fugiat vero exercitationem ducimus
+              veniam eolgendi quibusdam veolt expolcabo consequatur facere
+              accusamus molestias laborum repudiandae sapiente dicta.
+            </li>
+            <li className="list-decimal">
+              Lorem ipsum, dolor sit amet consectetur adipisicing eolt.
+              Distinctio mololtia at illo non iste, qui fugiat quam praesentium
+              nesciunt soluta.
+            </li>
+          </ol>
         </div>
         <SheetFooter>
           <SheetClose asChild>
-            <Button type="submit">Save changes</Button>
+            <button
+              className="bg-gray-800 text-white w-full rounded-lg py-2 px-4"
+              type="button"
+            >
+              Done
+            </button>
           </SheetClose>
         </SheetFooter>
       </SheetContent>
@@ -50,4 +58,4 @@ const Info = () => {
   );
 };
 
-export default Info;
+export default InfoSheet;

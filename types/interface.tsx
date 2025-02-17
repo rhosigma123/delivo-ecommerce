@@ -24,3 +24,9 @@ export interface CategoryCardProps {
   imgData?: ImageCardProps;
   name: string;
 }
+
+export interface ProfileProps {
+  id: number;
+  data: any;
+  onUpdate: (data: any) => void;
+}

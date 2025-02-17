@@ -15,7 +15,7 @@ const ImageCard = ({ bgColor, imageUrl, altText }: ImageCardProps) => {
         width={150}
         height={150}
         loading="lazy"
-        className={`object-cover w-full h-full`}
+        className={`object-cover w-full h-full max-w-[100px] aspect-square`}
       />
     </div>
   );
