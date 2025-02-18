@@ -21,8 +21,8 @@ const Navbar: React.FC = () => {
   const isAdmin: boolean = pathname?.startsWith("/admin") ?? false;
 
   return (
-    <nav className="relative px-5 py-3 flex justify-between items-center bg-white shadow-md">
-      <Link href={`/`} className="pb-2 border-b">
+    <nav className="relative px-20 py-3 flex justify-between items-center bg-background border-b ">
+      <Link href={`/`}>
         <Logo logo={"/delivo-primary-logo.png"} companyName="Delivo" />
       </Link>
       <SearchField />
@@ -35,11 +35,6 @@ const Navbar: React.FC = () => {
       </Button>
 
       <Bag />
-      <Profile />
-      <Info />
-      <OrderDetails />
-      <GiftCard />
-      {/* <ProfileIcon /> */}
     </nav>
   );
 };

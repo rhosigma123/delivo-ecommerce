@@ -18,35 +18,13 @@ const Logo: React.FC<logoProps> = ({
     <>
       {!showClientImages && (
         <Image
-          className={`${className} px-5 w-[150px] h-[50px] object-contain`}
+          className={`${className}`}
           src={logo}
-          width={1000}
-          height={1000}
+          width={200}
+          height={100}
           alt={companyName}
           loading="eager"
         />
-      )}
-
-      {showClientImages && (
-        <div className="flex items-center gap-3">
-          <Image
-            className={`${className}w-[150px] h-[50px] object-contain`}
-            src={logo}
-            width={400}
-            height={400}
-            alt={companyName}
-            loading="eager"
-          />
-          <hr className="h-10 w-[3px] bg-primary" />
-          <Image
-            className={`${className}w-[150px] h-[50px] object-contain`}
-            src={clientLogo}
-            width={400}
-            height={400}
-            alt={clientName}
-            loading="eager"
-          />
-        </div>
       )}
     </>
   );
