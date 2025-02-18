@@ -109,3 +109,14 @@
 .bgQuickCraves {
   background: linear-gradient(180deg, rgba(255, 241, 243, 0) 0%, #fff1f3 100%);
 }
+
+.locationGradiant {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) -0.14%,
+    rgba(255, 255, 255, 0.91) 35.44%
+  );
+  background-position: top;
+  height: 200px;
+  background-position: top;
+}
