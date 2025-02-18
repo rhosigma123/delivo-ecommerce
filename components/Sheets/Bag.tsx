@@ -25,10 +25,10 @@ const Bag = () => {
     <Sheet>
       <SheetTrigger asChild>
         <button className="shadow-none border-none h-full flex gap-2 items-center">
-          <ShoppingBag size={40} color="#373737" />
-          <span className="text-fontSecondary w-full grid text-nowrap text-left font-medium text-base">
+          <ShoppingBag size={30} color="#373737" />
+          <span className="text-fontSecondary w-full grid text-nowrap text-left font-medium text-sm">
             Shopping Bag{" "}
-            <strong className="text-fontPrimary font-bold text-xl">
+            <strong className="text-fontPrimary font-bold text-lg">
               $20.00
             </strong>
           </span>

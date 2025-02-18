@@ -11,6 +11,7 @@ import Navbar from "@/components/Navbar/Navbar";
 import PopularSearches from "@/components/PopularSearches";
 import Footer from "@/components/Footer/Footer";
 import DownloadAppBanner from "@/components/DownloadAppBanner";
+import Happiness from "@/components/Happiness";
 
 const PontanoSans = Pontano_Sans({
   weight: ["400", "500", "600", "700"],
@@ -42,6 +43,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <DownloadAppBanner />
+          <Happiness />
           <PopularSearches />
           <Footer />
           <FooterBottom />

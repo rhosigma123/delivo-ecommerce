@@ -10,6 +10,7 @@ import { Button } from "../ui/button";
 import LoginModal from "../Modals/LoginModal";
 import Bag from "../Sheets/Bag";
 import LocationModal from "../Modals/LocationModal";
+import SwitchRoutes from "../SwitchRoutes";
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
@@ -19,10 +20,15 @@ const Navbar: React.FC = () => {
   return (
     <nav className="relative px-20 space-x-5 py-3 flex justify-between items-center bg-background">
       <Link href={`/`}>
-        <Logo logo={"/delivo-primary-logo.png"} companyName="Delivo" />
+        <Logo
+          logo={"/delivo-primary-logo.png"}
+          companyName="Delivo"
+          className="w-[150px]"
+        />
       </Link>
       <LocationModal />
       <SearchField />
+      <SwitchRoutes />
       <LoginModal />
       <Bag />
     </nav>

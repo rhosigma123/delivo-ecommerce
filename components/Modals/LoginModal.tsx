@@ -14,12 +14,14 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import Logo from "../Navbar/logo";
 import Otp from "../Auth/Otp";
+import { CircleUser } from "lucide-react";
 
 const LoginModal = () => {
   return (
     <Dialog>
       <DialogTrigger>
-        <button className="text-fontPrimary text-xl font-medium hover:text-primaryColor">
+        <button className="text-fontPrimary gap-2 flex items-center text-lg font-bold hover:text-primary">
+          <CircleUser  size={20}/>
           Login
         </button>
       </DialogTrigger>
