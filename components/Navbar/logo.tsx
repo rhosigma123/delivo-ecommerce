@@ -11,43 +11,16 @@ const Logo: React.FC<logoProps> = ({
   companyName,
   className,
 }) => {
-  const pathname = usePathname();
-  const showClientImages = pathname?.startsWith("/client");
-
   return (
     <>
-      {!showClientImages && (
-        <Image
-          className={`${className} px-5 w-[150px] h-[50px] object-contain`}
-          src={logo}
-          width={1000}
-          height={1000}
-          alt={companyName}
-          loading="eager"
-        />
-      )}
-
-      {showClientImages && (
-        <div className="flex items-center gap-3">
-          <Image
-            className={`${className}w-[150px] h-[50px] object-contain`}
-            src={logo}
-            width={400}
-            height={400}
-            alt={companyName}
-            loading="eager"
-          />
-          <hr className="h-10 w-[3px] bg-primary" />
-          <Image
-            className={`${className}w-[150px] h-[50px] object-contain`}
-            src={clientLogo}
-            width={400}
-            height={400}
-            alt={clientName}
-            loading="eager"
-          />
-        </div>
-      )}
+      <Image
+        className={`${className} px-5`}
+        src={logo || `/delivo-primary-logo.png`}
+        width={200}
+        height={100}
+        alt={companyName}
+        loading="eager"
+      />
     </>
   );
 };

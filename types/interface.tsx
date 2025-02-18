@@ -30,3 +30,11 @@ export interface ProfileProps {
   data: any;
   onUpdate: (data: any) => void;
 }
+
+export interface logoProps {
+  logo?: string; // Optional logo URL
+  clientLogo?: string; // Optional client-specific logo URL
+  clientName?: string; // Optional client name
+  companyName: string; // Company name (required for alt text)
+  className?: string; // Optional custom classes for styling
+}

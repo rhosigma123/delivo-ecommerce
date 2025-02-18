@@ -9,6 +9,18 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        scroll: {
+          "0%, 20%": { transform: "translateY(0)" }, // Show first item
+          "25%, 45%": { transform: "translateY(-100%)" }, // Show second item
+          "50%, 70%": { transform: "translateY(-200%)" }, // Show third item
+          "75%, 95%": { transform: "translateY(-300%)" }, // Show fourth item
+          "100%": { transform: "translateY(0)" }, // Loop back to first item
+        },
+      },
+      animation: {
+        scroll: "scroll 10s infinite",
+      },
       screens: {
         "3xl": "1900px", // Custom breakpoint for 1900px
       },

@@ -12,15 +12,35 @@ interface SearchFieldProps {
 
 const SearchField: React.FC<SearchFieldProps> = (props) => {
   return (
-    <div className={`relative w-full md:w-[480px]`}>
+    <div className={`relative w-full md:w-[500px]`}>
       <input
-        className={`bg-secondary w-full rounded-lg focus:border-3 focus:border-solid focus:outline-none focus:border-primary text-gray-500 border pr-4 pl-4 py-2`}
+        className={`bg-white w-full rounded-full focus:border-3 focus:border-solid focus:outline-none focus:border-primary text-fontPrimary border pr-4 pl-4 py-2`}
         type="search"
         value={props.searchQuery}
         onChange={props.handleSearchQueryChange}
-        placeholder={"Search for products, brands and more"}
+        placeholder={`Search for`}
       />
-      <BiSearchAlt className="text-xl text-gray-500 absolute right-4 top-1/2 transform -translate-y-1/2" />
+      {/* <div className="relative h-6 overflow-hidden">
+        <div className="absolute w-full animate-scroll">
+          <span className="block text-base font-medium text-gray-400">
+            Amul Milk
+          </span>
+          <span className="block text-base font-medium text-gray-400">
+            Amul Doodh
+          </span>
+          <span className="block text-base font-medium text-gray-400">
+            Sagar Milk
+          </span>
+          <span className="block text-base font-medium text-gray-400">
+            Amul Icecream
+          </span>
+          <span className="block text-base font-medium text-gray-400">
+            Amul Dahi
+          </span>
+        </div>
+      </div> */}
+
+      <BiSearchAlt className="text-xl text-fontPrimary absolute right-4 top-1/2 transform -translate-y-1/2" />
     </div>
   );
 };

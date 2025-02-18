@@ -87,8 +87,8 @@ const Otp = () => {
   };
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-3">
-      <div className="flex gap-2">
+    <form onSubmit={onSubmit} className="grid gap-3 bg-white rounded-3xl p-10">
+      <div className="flex gap-2 justify-center">
         {otp.map((digit, index) => (
           <input
             key={index}
@@ -100,13 +100,13 @@ const Otp = () => {
               inputRefs.current[index] = el;
             }}
             maxLength={1}
-            className="border-[1px] w-[40px] h-[40px] border-[#E8E8E8] rounded-md text-center focus:border-[#3f41a6] focus:outline-none transition-colors duration-200"
+            className="border-[1px] w-[40px] h-[40px] border-[#E8E8E8] rounded-md text-center focus:border-primary focus:outline-none transition-colors duration-200"
           />
         ))}
       </div>
-      <p className="text-fontPrimary text-sm font-semibold">
+      <p className="text-fontPrimary text-sm font-semibold text-center flex gap-2 justify-center">
         Resend in
-        <span className="text-blue-500">
+        <span className="text-green-500">
           {Math.floor(timeLeft / 60)
             .toString()
             .padStart(2, "0")}
@@ -114,12 +114,13 @@ const Otp = () => {
         </span>{" "}
         seconds
       </p>
+
       {canResend && (
-        <Button className="rounded-md w-full" onClick={handleResendOtp}>
+        <Button className="rounded-full w-full" onClick={handleResendOtp}>
           Resend OTP
         </Button>
       )}
-      <Button className="rounded-md w-full" type="submit">
+      <Button className="rounded-full w-full" type="submit">
         Submit OTP
       </Button>
     </form>

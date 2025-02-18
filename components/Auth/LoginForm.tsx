@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import {
   Form,
   FormControl,
@@ -10,40 +9,33 @@ import {
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AiOutlineEye } from "react-icons/ai";
-import { RxEyeClosed } from "react-icons/rx";
 import { useSession, signIn, getSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import React, { useEffect, useState } from "react";
-import { isEmail } from "validator";
-import Button from "../Button";
-import Logo from "../Navbar/logo";
 import { Input } from "../ui/input";
+import CopyRight from "./CopyRight";
 
 const formSchema = z.object({
-  email: z
+  phone: z
     .string()
-    .email("Invalid email address")
-    .min(5, "Email is too short")
-    .refine(isEmail, { message: "Invalid Email Address" }),
-  password: z.string().min(8, "Password is too short"),
+    .regex(
+      /((\+*)((0[ -]*)*|((91 )*))((\d{12})+|(\d{10})+))|\d{5}([- ]*)\d{6}/,
+      "Invalid phone number format"
+    ),
 });
+
 type FormInputs = z.infer<typeof formSchema>;
 
 const LoginForm = () => {
-  const [viewPassword, setViewPassword] = useState(false);
   const router = useRouter();
   const { data: session, status } = useSession();
 
   useEffect(() => {
     if (status === "authenticated" && session) {
       switch (session.user.role) {
-        case "ADMIN":
-          router.push("/admin");
-          break;
-        case "MANAGER":
-          router.push("/manager");
+        case "USER":
+          router.push("/");
           break;
         default:
           router.push("/");
@@ -60,8 +52,7 @@ const LoginForm = () => {
     try {
       const result = await signIn("credentials", {
         redirect: false,
-        email: data.email,
-        password: data.password,
+        phone: data.phone,
       });
 
       if (result?.error) {
@@ -80,11 +71,8 @@ const LoginForm = () => {
             description: session.user.fullName,
           });
           switch (session.user.role) {
-            case "ADMIN":
-              router.push("/admin");
-              break;
-            case "MANAGER":
-              router.push("/manager");
+            case "USER":
+              router.push("/");
               break;
             default:
               router.push("/");
@@ -97,95 +85,44 @@ const LoginForm = () => {
     }
   };
 
-  const viewPasswordHandler = () => {
-    setViewPassword((prev) => !prev);
-  };
-
   return (
-    <div className="bg-white grid gap-3 w-[calc(100vw-30px)] sm:w-[450px] rounded-3xl p-5 py-10 sm:p-10">
-      <div className="mx-auto gap-5 w-[160px] h-[140px] p-5 bg-secondary rounded-xl">
-        <Logo
-          className="min-w-[120px] min-h-[100px] object-fill"
-          logo={"/login-logo.png"}
-          companyName={"Audiaq - Zepto"}
-        />
-      </div>
-      <h1 className="text-2xl font-medium mx-auto text-nowrap text-fontPrimary">
-        Welcome Again!
+    <div className="bg-white grid gap-3 rounded-3xl p-5 py-10 sm:p-10">
+      <h1 className="text-2xl font-bold leading-5 text-nowrap text-primary">
+        Login
       </h1>
+      <p className="text-fontPrimary text-center">
+        Get desired products at your doorstep in Minutes*
+      </p>
 
       <Form {...form}>
         <form className="grid gap-3" onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
-            name="email"
+            name="phone"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <Input
                     {...field}
-                    type="email"
-                    placeholder="Enter your email"
+                    type="tel"
+                    placeholder="Enter phone number"
                   />
                 </FormControl>
                 <FormMessage>
-                  {form.formState.errors.email?.message}
+                  {form.formState.errors.phone?.message}
                 </FormMessage>
               </FormItem>
             )}
           />
-
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <div className="relative">
-                    <Input
-                      {...field}
-                      type={viewPassword ? "text" : "password"}
-                      placeholder="Enter password"
-                    />
-                    {viewPassword ? (
-                      <AiOutlineEye
-                        onClick={viewPasswordHandler}
-                        className={`cursor-pointer text-secondary-foreground/40 text-2xl absolute right-3 ${
-                          form.formState.errors.password
-                            ? "bottom-[10px]"
-                            : "bottom-[10px]"
-                        }`}
-                      />
-                    ) : (
-                      <RxEyeClosed
-                        onClick={viewPasswordHandler}
-                        className={`cursor-pointer text-secondary-foreground/40 text-xl absolute right-3 ${
-                          form.formState.errors.password
-                            ? "bottom-[10px]"
-                            : "bottom-[12px]"
-                        }`}
-                      />
-                    )}
-                  </div>
-                </FormControl>
-                <FormMessage>
-                  {form.formState.errors.password?.message}
-                </FormMessage>
-              </FormItem>
-            )}
-          />
-
-          <Link
-            className="underline justify-self-end font-medium text-sm"
-            href={"/forgot-password"}
+          <button
+            className="bg-primary rounded-full px-4 py-2 text-white font-bold"
+            type="button"
           >
-            Forgot Password?
-          </Link>
-          <Button className="rounded-md" type="submit">
-            Login
-          </Button>
+            Continue
+          </button>
         </form>
       </Form>
+      <CopyRight />
     </div>
   );
 };
