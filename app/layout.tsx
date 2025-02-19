@@ -12,7 +12,7 @@ import PopularSearches from "@/components/PopularSearches";
 import Footer from "@/components/Footer/Footer";
 import DownloadAppBanner from "@/components/DownloadAppBanner";
 import Happiness from "@/components/Happiness";
-import { CategoryContextProvider } from "./Context/CategoryContext";
+// import { CategoryContextProvider } from "./Context/CategoryContext";
 
 const PontanoSans = Pontano_Sans({
   weight: ["400", "500", "600", "700"],

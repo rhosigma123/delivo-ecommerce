@@ -2,7 +2,7 @@ import React from "react";
 
 const PrivacyPolicyRoute = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="delivo__container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">Delivo Privacy Notice</h1>
       <p className="mb-4">
         This Privacy Notice applies to Delivo Marketplace Private Limited

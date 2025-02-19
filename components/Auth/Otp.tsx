@@ -20,7 +20,7 @@ import { Input } from "../ui/input";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Button from "../Button";
 import { toast } from "sonner";
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 
 interface OtpData {
   digit1: string;
