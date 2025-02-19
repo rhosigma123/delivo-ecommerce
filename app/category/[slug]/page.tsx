@@ -1,7 +1,6 @@
 import ProductCard from "@/components/Cards/ProductCard";
 import CategoryButton from "@/components/CategoryButton";
 import { ChevronDown } from "lucide-react";
-import Image from "next/image";
 import React from "react";
 
 const CategoryRoute = () => {
@@ -26,24 +25,10 @@ const CategoryRoute = () => {
       </section>
       <div className="delivo__container grid grid-cols-[250px_1fr] items-start">
         <aside className="max-h-[calc(100vh-100px)] overflow-auto">
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
-          <CategoryButton />
+          <CategoryButton
+            categoryName={"Ayaan shaikh"}
+            categoryImage={"/public/appBanner.png"}
+          />
         </aside>
         <main className="grid grid-cols-6 gap-5">
           <ProductCard />

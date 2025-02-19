@@ -1,48 +1,32 @@
 import React from "react";
-import { EmblaOptionsType } from "embla-carousel";
-import useEmblaCarousel from "embla-carousel-react";
-import Fade from "embla-carousel-fade";
-import { DotButton, useDotButton } from "./PaginationButton";
+import { BASE_URL } from "@/config";
+import Image from "next/image";
 
-type PropType = {
-  slides: number[];
-  options?: EmblaOptionsType;
-};
+export interface BannerProps {
+  banners: {
+    imageUrl: string;
+    altText: string;
+  }[];
+}
 
-const HeroBanner: React.FC<PropType> = (props) => {
-  const { slides, options } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Fade()]);
-
-  const { selectedIndex, scrollSnaps, onDotButtonClick } =
-    useDotButton(emblaApi);
+const HeroBanner: React.FC<BannerProps> = ({ banners }) => {
   return (
-    <div className="embla">
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container">
-          {slides.map((index) => (
-            <div className="embla__slide" key={index}>
-              <img
-                className="embla__slide__img"
-                src={`https://picsum.photos/600/350?v=${index}`}
-                alt="Your alt text"
-              />
-            </div>
+    <>
+      {banners && (
+        <div className="delivo__container my-10 relative h-auto md:h-[350px]">
+          {banners.map((banner, index) => (
+            <Image
+              key={index}
+              src={`${banner.imageUrl || "/"}`}
+              alt={(banner.altText && banner.altText) || "Banner Image"}
+              width={1200}
+              height={300}
+              className="w-full h-auto max-w-full absolute inset-0"
+            />
           ))}
         </div>
-      </div>
-
-      <div className="embla__dots">
-        {scrollSnaps.map((_, index) => (
-          <DotButton
-            key={index}
-            onClick={() => onDotButtonClick(index)}
-            className={"embla__dot".concat(
-              index === selectedIndex ? " embla__dot--selected" : ""
-            )}
-          />
-        ))}
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

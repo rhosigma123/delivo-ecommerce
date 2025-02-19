@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import React, { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import CopyRight from "./CopyRight";
+import apiClient from "@/lib/axiosInterceptor";
 
 const formSchema = z.object({
   phone: z
@@ -50,38 +51,12 @@ const LoginForm = () => {
 
   const onSubmit = async (data: FormInputs) => {
     try {
-      const result = await signIn("credentials", {
-        redirect: false,
+      const response = await apiClient.post("/auth/login/otp", {
         phone: data.phone,
       });
-
-      if (result?.error) {
-        toast.error("Login Failed", {
-          description: result.error,
-          action: {
-            label: "Retry",
-            onClick: () => onSubmit(data),
-          },
-        });
-        console.error("Login error:", result.error);
-      } else {
-        const session = await getSession();
-        if (session) {
-          toast.success("Login Successful", {
-            description: session.user.fullName,
-          });
-          switch (session.user.role) {
-            case "USER":
-              router.push("/");
-              break;
-            default:
-              router.push("/");
-              break;
-          }
-        }
-      }
+      if (response.status === 200) router.push(`/?phone=${data.phone}`);
     } catch (error) {
-      console.error("Login error:", error);
+      console.error(`[Error]: ${error}`);
     }
   };
 
@@ -116,7 +91,7 @@ const LoginForm = () => {
           />
           <button
             className="bg-primary rounded-full px-4 py-2 text-white font-bold"
-            type="button"
+            type="submit"
           >
             Continue
           </button>

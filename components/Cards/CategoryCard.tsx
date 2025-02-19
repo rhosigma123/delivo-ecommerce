@@ -3,16 +3,19 @@ import React from "react";
 import ImageCard from "./ImageCard";
 import { CategoryCardProps } from "@/types/interface";
 
-const CategoryCard = ({ imgData, name }: CategoryCardProps) => {
+const CategoryCard = ({ data }: CategoryCardProps) => {
   return (
-    <Link href={"/"} className="w-fit grid gap-2 justify-items-center">
+    <Link
+      href={`/category/${data.slug}`}
+      className="w-fit grid gap-2 justify-items-center content-start"
+    >
       <ImageCard
-        imageUrl={imgData?.imageUrl || ""}
-        altText={(imgData?.altText && imgData?.altText) || ""}
+        imageUrl={data.image || ""}
+        altText={(data.name && data.name) || ""}
         bgColor={"bg-white"}
       />
       <h3 className="text-fontPrimary text-center break-words px-2 font-bold capitalize text-lg w-fit">
-        {(name && name) || ""}
+        {(data.name && data.name) || ""}
       </h3>
     </Link>
   );

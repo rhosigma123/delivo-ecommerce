@@ -43,11 +43,11 @@ const PopularSearches = () => {
       {popularSearchesData.map((category) => (
         <div
           key={category.key}
-          className="flex gap-2 text-lg text-fontPrimary font-medium"
+          className="grid px-5 md:flex gap-2 text-lg text-fontPrimary font-medium"
         >
           <strong>{category.key}:</strong>
           <div className="flex flex-wrap">
-            {category.items.map((item, index) => (
+            {category.items.map((item) => (
               <button
                 key={item.id}
                 type="button"

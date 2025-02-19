@@ -4,8 +4,9 @@ import { jwtDecode } from "jwt-decode";
 import apiClient from "@/lib/axiosInterceptor";
 
 interface Credentials {
-  email: string;
-  password: string;
+  phone: string;
+  otp: string;
+  verificationId: string;
 }
 
 async function refreshAccessToken(token: any) {
@@ -45,24 +46,23 @@ export default NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: {
-          label: "Email",
+        phone: {
+          label: "Phone",
           type: "text",
-        },
-        password: {
-          label: "Password",
-          type: "password",
         },
       },
       async authorize(credentials) {
-        const { email, password } = credentials as Credentials;
+        const { phone, otp, verificationId } = credentials as Credentials;
+
         try {
-          const response = await apiClient.post("/auth/login", {
-            email,
-            password,
+          const response = await apiClient.post("/auth/login/otp/verify", {
+            phone,
+            otp,
+            verificationId,
           });
 
           const user = response.data.user;
+          console.log(user);
 
           if (user) {
             return {
@@ -73,7 +73,7 @@ export default NextAuth({
               refreshToken: user.refreshToken,
             };
           } else {
-            throw new Error("Invalid email or password");
+            throw new Error("Invalid phone or password");
           }
         } catch (error) {
           console.error("Login error:", error);
@@ -109,6 +109,7 @@ export default NextAuth({
 
     async session({ session, token }) {
       session.user = token;
+
       return session;
     },
   },

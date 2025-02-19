@@ -12,6 +12,7 @@ import PopularSearches from "@/components/PopularSearches";
 import Footer from "@/components/Footer/Footer";
 import DownloadAppBanner from "@/components/DownloadAppBanner";
 import Happiness from "@/components/Happiness";
+import { CategoryContextProvider } from "./Context/CategoryContext";
 
 const PontanoSans = Pontano_Sans({
   weight: ["400", "500", "600", "700"],
@@ -39,15 +40,17 @@ export default function RootLayout({
           zIndex={1600}
         />
         <Provider>
-          <Toaster position="bottom-right" closeButton />
-          <Navbar />
-          {children}
-          <DownloadAppBanner />
-          <Happiness />
-          <PopularSearches />
-          <Footer />
-          <FooterBottom />
-          <DevelopedBy />
+          <CategoryContextProvider>
+            <Toaster position="bottom-right" closeButton />
+            <Navbar />
+            {children}
+            <DownloadAppBanner />
+            <Happiness />
+            <PopularSearches />
+            <Footer />
+            <FooterBottom />
+            <DevelopedBy />
+          </CategoryContextProvider>
         </Provider>
       </body>
     </html>

@@ -7,8 +7,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ChevronDown, ChevronRight, LocateIcon, MapPin } from "lucide-react";
+import { ChevronDown, LocateIcon, MapPin } from "lucide-react";
 import Image from "next/image";
+import { BiSearchAlt } from "react-icons/bi";
 
 type LocationType = {
   latitude: number;
@@ -79,51 +80,60 @@ const LocationModal = () => {
           </span>
         </button>
       </DialogTrigger>
-      <DialogContent className="border-none grid content-end p-0 pb-5 rounded-2xl bg-[url(/location-bg.png)] bg-no-repeat bg-contain h-[calc(100vh-400px)] overflow-clip bg-white">
-        <DialogHeader className="px-5 pt-5 locationGradiant">
-          <Image
-            src={"/location-pin.svg"}
-            alt="Location pin"
-            width={50}
-            height={50}
-            className="h-[50px] w-full"
-          />
-          <DialogTitle className="text-center text-fontPrimary font-bold text-lg">
-            Location permission is {locationEnabled ? "On" : "Off"}
-          </DialogTitle>
-          <DialogDescription className="text-center text-fontSecondary font-bold text-sm">
-            Turn on the location permission to get the best delivery experience
-          </DialogDescription>
-          <button
-            disabled={locationEnabled}
-            onClick={enableLocation}
-            className={`bg-[#13ab7b] px-5 py-2 rounded-lg text-white text-sm w-full ${
-              locationEnabled ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-          >
-            {locationEnabled ? "Enabled" : "Enable"}
-          </button>
-        </DialogHeader>
-
-        <div className="px-5 grid gap-2">
-          <label htmlFor="location">Select delivery location</label>
-          <input type="search" placeholder="Search for Area, Street name..." />
-          <button
-            type="button"
-            onClick={enableLocation}
-            disabled={!locationEnabled}
-            className={`flex items-center gap-3 w-full bg-secondary relative border-green-500 border px-4 py-2 rounded-lg text-green-500 `}
-          >
-            <LocateIcon /> Use Current Location
-            <ChevronRight
-              size={20}
-              className="absolute top-1/2 transform -translate-y-1/2 right-4"
+      <DialogContent className="border-none grid content-end p-0 pb-5 sm:rounded-2xl bg-[url(/location-bg.png)] bg-no-repeat bg-contain h-[calc(100vh-400px)] overflow-clip bg-white">
+        <div className="locationGradiant grid gap-5">
+          <DialogHeader className="px-5 pt-5 ">
+            <Image
+              src={"/location-pin.svg"}
+              alt="Location pin"
+              width={50}
+              height={50}
+              className="h-[50px] w-full"
             />
-          </button>
+            <DialogTitle className="text-center text-fontPrimary font-bold text-lg">
+              Location permission is {locationEnabled ? "On" : "Off"}
+            </DialogTitle>
+            <DialogDescription className="text-center text-fontSecondary font-bold text-sm">
+              Turn on the location permission to get the best delivery
+              experience
+            </DialogDescription>
+            <button
+              disabled={locationEnabled}
+              onClick={enableLocation}
+              className={`bg-[#13ab7b] flex items-center justify-center gap-3  px-5 py-2 rounded-lg text-white text-sm w-full ${
+                locationEnabled ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+            >
+              <LocateIcon size={18} />{" "}
+              {locationEnabled ? "Enabled" : "Enable Current Location"}
+            </button>
 
-          {error && (
-            <p className="text-red-600 text-center text-sm">Error: {error}</p>
-          )}
+            {/* <button
+              type="button"
+              onClick={enableLocation}
+              disabled={!locationEnabled}
+              className={`flex items-center gap-3 w-full bg-secondary relative border-green-500 border px-4 py-2 rounded-lg text-green-500 `}
+            >
+              <LocateIcon /> Use Current Location
+              <ChevronRight
+                size={20}
+                className="absolute top-1/2 transform -translate-y-1/2 right-4"
+              />
+            </button> */}
+          </DialogHeader>
+
+          <span className="border-2 p-2 rounded-full justify-self-center bg-white text-fontSecondary text-sm">
+            OR
+          </span>
+
+          <div className="relative px-5">
+            <input
+              className={`bg-secondary  focus:placeholder:text-green-600 w-full rounded-lg focus:border-3 focus:border-solid focus:outline-none focus:border-green-500 text-fontPrimary border pr-4 pl-4 py-2`}
+              type="search"
+              placeholder={`Search for`}
+            />
+            <BiSearchAlt className="text-xl text-gray-400 absolute right-7 top-1/2 transform -translate-y-1/2" />
+          </div>
         </div>
       </DialogContent>
     </Dialog>

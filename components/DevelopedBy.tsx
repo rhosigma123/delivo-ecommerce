@@ -2,7 +2,7 @@ import React from "react";
 
 const DevelopedBy = () => {
   return (
-    <div className="delivo__container flex items-center py-2 px-10 justify-between">
+    <div className="delivo__container flex items-center py-2 px-10 justify-between md:flex-row flex-col text-center">
       <p className="text-base text-gray-400">
         “Delivo” is owned & managed by "kodeinnovate pvt. ltd".
       </p>

@@ -19,10 +19,15 @@ export interface ImageCardProps {
   imageUrl: string;
   altText: string;
   bgColor: string;
+  offer?: boolean;
 }
+
 export interface CategoryCardProps {
-  imgData?: ImageCardProps;
-  name: string;
+  data: {
+    image: string;
+    slug: string;
+    name: string;
+  };
 }
 
 export interface ProfileProps {
