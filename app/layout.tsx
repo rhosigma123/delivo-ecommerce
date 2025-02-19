@@ -40,17 +40,15 @@ export default function RootLayout({
           zIndex={1600}
         />
         <Provider>
-          <CategoryContextProvider>
-            <Toaster position="bottom-right" closeButton />
-            <Navbar />
-            {children}
-            <DownloadAppBanner />
-            <Happiness />
-            <PopularSearches />
-            <Footer />
-            <FooterBottom />
-            <DevelopedBy />
-          </CategoryContextProvider>
+          <Toaster position="bottom-right" closeButton />
+          <Navbar />
+          {children}
+          <DownloadAppBanner />
+          <Happiness />
+          <PopularSearches />
+          <Footer />
+          <FooterBottom />
+          <DevelopedBy />
         </Provider>
       </body>
     </html>

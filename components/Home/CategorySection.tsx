@@ -3,12 +3,10 @@ import React, { useContext, useEffect, useState } from "react";
 import CategoryCard from "../Cards/CategoryCard";
 import { useSession } from "next-auth/react";
 import apiClient from "@/lib/axiosInterceptor";
-import { CategoryContext } from "@/app/Context/CategoryContext";
 
 const CategorySection = () => {
   const { data: session } = useSession();
   const [homeData, setHomeData] = useState<any[] | null>(null);
-  const categoryContext = useContext(CategoryContext);
 
   useEffect(() => {
     if (session) {
