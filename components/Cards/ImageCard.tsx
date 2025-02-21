@@ -12,15 +12,15 @@ const ImageCard = ({ bgColor, imageUrl, altText, offer }: ImageCardProps) => {
 
   return (
     <div
-      className={`border-[#D8E4FF] relative border-2 overflow-clip grid place-content-center rounded-2xl ${bgColor} aspect-square h-full w-full`}
+      className={`border-[#D8E4FF] relative border-2 overflow-clip grid place-content-center rounded-2xl ${bgColor}`}
     >
       <Image
         src={imgUrl || "/"}
         alt={altText + " - Delivo"}
-        width={150}
-        height={150}
-        loading="lazy"
-        className={`object-cover w-full h-full max-w-full aspect-square`}
+        width={130}
+        height={130}
+        loading="eager"
+        className={`object-cover h-full aspect-square`}
       />
       {offer && (
         <>

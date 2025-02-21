@@ -4,29 +4,42 @@ import { BASE_URL } from "@/config";
 
 export interface CategoryBtnProps {
   categoryName: string;
-  categoryImage: string;
+  categoryImage: string | null;
+  isActive?: boolean;
+  onClick?: () => void;
 }
 
 const CategoryButton: React.FC<CategoryBtnProps> = ({
   categoryName,
   categoryImage,
+  isActive = false,
+  onClick,
 }) => {
-  const imgUrl = BASE_URL + categoryImage;
+  console.log(categoryImage, categoryName);
+
+  const imgUrl = categoryImage ? BASE_URL + categoryImage : "/placeholder.png";
 
   return (
     <button
       type="button"
-      className="flex w-full gap-2 items-center border-l-4 hover:border-primary border-transparent px-2 py-1 hover:bg-background transition-all ease-linear"
+      onClick={onClick}
+      className={`flex w-full gap-2 items-center border-l-4 px-2 py-1 transition-all ease-linear 
+        ${
+          isActive
+            ? "border-primary bg-gray-100"
+            : "border-transparent hover:bg-background"
+        }
+      `}
     >
       <Image
-        src={imgUrl || "/"}
+        src={imgUrl}
         width={50}
         height={50}
         alt={categoryName || "Category"}
-        className="rounded-full bg-white object-cover"
+        className="rounded-full bg-white object-cover border h-[50px] w-[50px]"
       />
-      <span className="text-lg text-fontPrimary font-semibold">
-        {categoryName && categoryName}
+      <span className="text-base text-left line-clamp-2 text-fontPrimary font-semibold">
+        {categoryName}
       </span>
     </button>
   );

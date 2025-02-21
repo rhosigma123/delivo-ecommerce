@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const DownloadAppBanner = () => {
   return (
-    <div className="rounded-3xl content-center items-center relative overflow-hidded grid grid-cols-1 lg:grid-cols-2 gap-8 border p-5 md:px-10 md:py-8 delivo__container my-14  bg-[url(/appBanner.png)] bg-no-repeat bg-cover">
+    <div className="rounded-3xl overflow-clip content-center items-center relative grid grid-cols-1 lg:grid-cols-2 gap-8 p-5 md:px-10 md:py-8 delivo__container my-14  bg-[url(/appBanner.png)] bg-no-repeat bg-cover">
       <div className="gap-2 grid text-center">
         <h2 className="lg:col-start-1 lg:col-end-2 text-primary text-3xl md:text-6xl font-bold w-full md:w-[80%]">
           Download the Delivo App
@@ -36,9 +36,9 @@ const DownloadAppBanner = () => {
               src={"/apple-store.png"}
               alt={"App Store"}
               width={200}
-              height={200}
+              height={50}
               loading="lazy"
-              className="bg-white rounded-xl border max-w-[100%] h-auto"
+              className="bg-white rounded-md border"
             />
           </Link>
           <Link
@@ -51,9 +51,9 @@ const DownloadAppBanner = () => {
               src={"/google-play-store.png"}
               alt={"Playstore"}
               width={200}
-              height={200}
+              height={50}
               loading="lazy"
-              className="bg-white rounded-xl border max-w-[100%] h-auto"
+              className="bg-white rounded-md border"
             />
           </Link>
         </div>

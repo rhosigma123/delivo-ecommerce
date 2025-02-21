@@ -6,11 +6,10 @@ import { useSession } from "next-auth/react";
 
 export default function Home() {
   const banners = [
-    { imageUrl: "/hero-banner.png", altText: "Pan Corner" },
-    { imageUrl: "/hero-banner.png", altText: "Pan Corner" },
-    { imageUrl: "/hero-banner.png", altText: "Pan Corner" },
-    { imageUrl: "/hero-banner.png", altText: "Pan Corner" },
-    { imageUrl: "/hero-banner.png", altText: "Pan Corner" },
+    { url: "/", imageUrl: "/hero-banner.png", altText: "Pan Corner" },
+    { url: "/", imageUrl: "/apple-store.png", altText: "Pan Corner" },
+    { url: "/", imageUrl: "/hero-banner.png", altText: "Pan Corner" },
+    { url: "/", imageUrl: "/apple-store.png", altText: "Pan Corner" },
   ];
 
   const { data: session } = useSession();
@@ -18,7 +17,7 @@ export default function Home() {
 
   return (
     <>
-      <HeroBanner banners={banners} />
+      {/* <HeroBanner banners={banners} /> */}
       <CategorySection />
       <QuickCravesSection />
     </>

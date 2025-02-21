@@ -11,10 +11,10 @@ const PrivacyPolicyRoute = () => {
         office at [Insert Address], and its subsidiaries, holding company, and
         affiliates. The Company owns the website
         <a
-          href="https://www.delivo.com"
+          href="https://delivoapp.com"
           className="text-primary hover:underline"
         >
-          www.delivo.com
+          delivoapp.com
         </a>{" "}
         and the mobile application ‘Delivo’ (collectively, the “Platform”).
       </p>
@@ -115,10 +115,10 @@ const PrivacyPolicyRoute = () => {
         If you have any questions or concerns about this Privacy Notice, please
         contact our Grievance Officer at{" "}
         <a
-          href="mailto:legal@delivo.com"
+          href="mailto:legal@delivoapp.com"
           className="text-primary hover:underline"
         >
-          legal@delivo.com
+          legal@delivoapp.com
         </a>
         .
       </p>

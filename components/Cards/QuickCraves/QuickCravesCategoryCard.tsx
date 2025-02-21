@@ -7,7 +7,7 @@ const QuickCravesCategoryCard = () => {
       <Image
         width={100}
         height={100}
-        className="rounded-full w-[100px] h-[100px] object-cover bg-white border-2"
+        className="rounded-full w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] object-cover bg-white border-2"
         src="/product.png"
         alt="Quick Craves"
         loading="lazy"

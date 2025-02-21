@@ -14,7 +14,7 @@ const Logo: React.FC<logoProps> = ({
   return (
     <>
       <Image
-        className={`${className} px-5`}
+        className={`${className} px-5 max-w-[200px]`}
         src={logo || `/delivo-primary-logo.png`}
         width={200}
         height={100}

@@ -35,6 +35,7 @@ export interface ImageCardProps {
 
 export interface CategoryCardProps {
   data: {
+    id: number;
     image: string;
     slug: string;
     name: string;
@@ -53,4 +54,43 @@ export interface logoProps {
   clientName?: string; // Optional client name
   companyName: string; // Company name (required for alt text)
   className?: string; // Optional custom classes for styling
+}
+
+export interface Subcategory {
+  id: number;
+  name: string;
+  image: string | null;
+}
+
+export interface SubcategoryList {
+  id: number;
+  name: string;
+  type: string;
+  Product: Product[];
+}
+
+export interface Category {
+  id: number;
+  name: string;
+  Subcategory: Subcategory[];
+}
+
+export interface SKU {
+  id: number;
+  images: string[];
+  name: string | null;
+  size: string;
+  moq: number;
+  mrp: number;
+  retail: number;
+  discount: number;
+}
+
+export interface Product {
+  id: number;
+  name: string;
+  uom: string | null;
+  status: string;
+  sponsored: boolean;
+  SKU: SKU[];
 }

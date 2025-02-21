@@ -4,13 +4,13 @@ import Start from "../Svg/Start";
 
 const RestaurantCard = () => {
   return (
-    <div className="grid grid-cols-[100px_1fr] gap-2 content-start items-start hover:bg-white p-3 rounded-2xl w-full">
+    <div className="grid sm:grid-cols-[100px_1fr] gap-2 content-start items-start hover:bg-white p-3 rounded-2xl w-full">
       <Image
         src={"/product.png"}
         alt="Chachu Chahi fast food"
         width={100}
         height={100}
-        className="rounded-xl border-2 bg-white object-cover h-[100px] w-[100px]"
+        className="rounded-xl border-2 bg-white object-cover h-full w-full"
         loading="lazy"
       />
 

@@ -41,7 +41,7 @@ export default function RootLayout({
         />
         <Provider>
           <Toaster position="bottom-right" closeButton />
-          <Navbar />
+          {/* <Navbar /> */}
           {children}
           <DownloadAppBanner />
           <Happiness />
