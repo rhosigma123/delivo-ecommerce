@@ -1,15 +1,17 @@
 import React from "react";
 import ImageCard from "./ImageCard";
 import Link from "next/link";
-import { ShoppingBag } from "lucide-react";
+import { ChevronDown, ShoppingBag } from "lucide-react";
 import { Product } from "@/types/interface";
+import { useRouter } from "next/navigation";
+import VariantsModal from "../Modals/VariantsModal";
 
 export interface ProductCardProps {
   data: Product;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
-  console.log(data);
+  const router = useRouter();
   const image = data.SKU.map(
     (sku: any) =>
       sku.images[0] ||
@@ -19,29 +21,42 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
       sku.images[4] ||
       sku.images[5]
   );
+  const handleVariantsSelect = (e: any) => {
+    e.stopPropagation();
+  };
+
+  const firstSku = data.SKU[0];
 
   return (
-    <Link
-      href={`/product/${data.id}`}
-      className="grid gap-1 p-3 hover:bg-white rounded-2xl hover:border border border-transparent"
+    <div
+      onClick={() => router.push(`/product/${data.slug}?pid=${data.id}`)}
+      className="grid gap-1 p-3 hover:bg-white rounded-2xl hover:border border border-transparent cursor-pointer content-between"
     >
       <ImageCard
         imageUrl={"/uploads/" + image || "/"}
         altText={data.name && data.name}
         bgColor={"bg-white"}
       />
-      <div className="grid gap-1">
-        <strong className="font-bold text-fontPrimary text-lg flex items-center gap-3">
-          ₹450
-          <span className="text-red-500 line-through font-medium text-base">
-            70
+      <div className="grid gap-1 content-between">
+        <strong className="font-bold text-fontPrimary text-base flex items-center gap-2">
+          {"₹" + (firstSku.retail && firstSku.retail) || ""}
+          <span className="text-red-500 line-through font-medium text-sm">
+            {"₹" + (firstSku.mrp && firstSku.mrp) || ""}
           </span>
         </strong>
-        <h3 className="text-fontPrimary  break-words px-2 font-bold capitalize text-base w-fit line-clamp-2 leading-6">
+        <h3 className="text-fontPrimary  break-words px-2 font-extrabold capitalize text-sm w-fit line-clamp-2 leading-5">
           {(data.name && data.name) || "NA"}
         </h3>
-        <span className="text-gray-400 text-base font-medium block">5Kg</span>
-        {data.status === "Available" && (
+        {data.SKU.length === 1 ? (
+          <span className="text-fontSecondary text-sm py-2">
+            {data.SKU.map((sku) => sku.size.slice(0, 20))}
+          </span>
+        ) : (
+          <div onClick={handleVariantsSelect} className="w-full">
+            <VariantsModal skus={data.SKU} />
+          </div>
+        )}
+        {data.status !== "Available" && (
           <span
             className={` ${
               data.status !== "Available" ? "text-red-500" : "text-green-500"
@@ -51,7 +66,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
           </span>
         )}
 
-        <button className="flex items-center hover:bg-accent hover:text-white gap-2 border-accent px-4 py-1 rounded-full border text-accent text-sm font-semibold bg-white">
+        <button
+          onClick={handleVariantsSelect}
+          className="flex items-center h-fit self-end hover:bg-accent hover:text-white gap-2 border-accent px-4 py-1 rounded-full border text-accent text-sm font-semibold bg-white"
+        >
           <ShoppingBag size={16} />
           Add to Bag
         </button>
@@ -65,7 +83,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
           </button>
         </div> */}
       </div>
-    </Link>
+    </div>
   );
 };
 

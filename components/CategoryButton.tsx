@@ -23,7 +23,7 @@ const CategoryButton: React.FC<CategoryBtnProps> = ({
     <button
       type="button"
       onClick={onClick}
-      className={`flex w-full gap-2 items-center border-l-4 px-2 py-1 transition-all ease-linear 
+      className={`flex w-full gap-2 items-center border-l-4 px-2 py-1 transition-all ease-linear hover:border-primary 
         ${
           isActive
             ? "border-primary bg-gray-100"

@@ -1,32 +1,15 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import CategoryCard from "../Cards/CategoryCard";
-import { useSession } from "next-auth/react";
-import apiClient from "@/lib/axiosInterceptor";
+import { useCategory } from "@/app/Hooks/useCategory";
 
 const CategorySection = () => {
-  const { data: session } = useSession();
-  const [homeData, setHomeData] = useState<any[] | null>(null);
-
-  useEffect(() => {
-    if (session) {
-      const fetchData = async () => {
-        try {
-          const response = await apiClient.get("/user/mainCategories");
-          console.log("Main Categories Data", response.data);
-          setHomeData(response.data.maincategories);
-        } catch (error: any) {
-          console.log(`[Error]: ${error.response.message}`);
-        }
-      };
-      fetchData();
-    }
-  }, [session]);
+  const { mainCategoryData } = useCategory(); // Get data from context
 
   return (
     <>
-      {homeData &&
-        homeData?.map(
+      {mainCategoryData &&
+        mainCategoryData?.map(
           (main, index) =>
             main.Category.length > 0 && (
               <section

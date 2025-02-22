@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import React from "react";
 
 const ImageCard = ({ bgColor, imageUrl, altText, offer }: ImageCardProps) => {
-  const imgUrl = BASE_URL + imageUrl;
+  const imgUrl = BASE_URL + (imageUrl + "?h=200&w=200&f=webp&q=100");
   // const imgUrl = imageUrl;
   const pathname = usePathname();
 

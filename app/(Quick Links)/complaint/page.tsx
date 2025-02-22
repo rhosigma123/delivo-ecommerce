@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const ComplaintRoute = () => {
-  return (
-    <div>ComplaintRoute</div>
-  )
-}
+  return <div>ComplaintRoute</div>;
+};
 
-export default ComplaintRoute
+export default ComplaintRoute;

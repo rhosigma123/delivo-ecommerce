@@ -88,9 +88,14 @@ export interface SKU {
 
 export interface Product {
   id: number;
+  slug: string;
   name: string;
   uom: string | null;
   status: string;
   sponsored: boolean;
   SKU: SKU[];
+}
+
+export interface VarinatModalProps {
+  skus: SKU[];
 }

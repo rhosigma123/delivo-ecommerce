@@ -107,3 +107,7 @@
   background-position: top;
   background-position: top;
 }
+
+.noScrollBar::-webkit-scrollbar {
+  display: none;
+}

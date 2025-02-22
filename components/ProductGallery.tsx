@@ -1,7 +1,11 @@
 import React from "react";
 
-const ProductGallery = () => {
-  return <div>ProductGallery</div>;
+export interface ImagesProps {
+  images: string[];
+}
+
+const ProductGallery: React.FC<ImagesProps> = ({ images }) => {
+  return <div>images</div>;
 };
 
 export default ProductGallery;
