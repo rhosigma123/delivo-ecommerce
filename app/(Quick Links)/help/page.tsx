@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import HelpSection from "@/components/Help/HelpSection";
+import NewNavbar from "@/components/commons/NewNavbar";
 
 const HelpRoute = () => {
   return (
-    <div>HelpRoute</div>
-  )
-}
+    <>
+      <NewNavbar />
+      <HelpSection />
+    </>
+  );
+};
 
-export default HelpRoute
+export default HelpRoute;

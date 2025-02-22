@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
+
+import BlogPage from "@/components/Blogs/BlogPage";
 
 const BlogsRoute = () => {
-  return (
-    <div>BlogsRoute</div>
-  )
-}
+  return <BlogPage />;
+};
 
-export default BlogsRoute
+export default BlogsRoute;
