@@ -18,19 +18,35 @@ const Navbar: React.FC = () => {
   const isAdmin: boolean = pathname?.startsWith("/admin") ?? false;
 
   return (
-    <nav className="relative px-20 space-x-5 py-3 flex justify-between items-center bg-background">
-      <Link href={`/`}>
-        <Logo
-          logo={"/delivo-primary-logo.png"}
-          companyName="Delivo"
-          className="w-[150px]"
-        />
-      </Link>
-      <LocationModal />
-      <SearchField />
-      <SwitchRoutes />
-      <LoginModal />
-      <Bag />
+    <nav className=" z-20 px-5 md:px-10  lg:px-20 space-x-5 py-3 gap-2 flex flex-col   w-full sticky top-0 justify-center items-center bg-background">
+      <section className="  flex   w-full gap-4  justify-between items-center bg-background">
+        <div className="w-fulll relative h-auto flex items-center gap-2">
+          <Link href={`/`}>
+            <Logo
+              logo={"/delivo-primary-logo.png"}
+              companyName="Delivo"
+              className="w-[150px]"
+            />
+          </Link>
+          <div className="w-fulll relative h-auto sm:flex items-center gap-4 hidden  ">
+          <LocationModal />
+          </div>
+        </div>
+
+        <span className="w-full relative xl:block hidden">
+          <SearchField />
+        </span>
+        <div className="w-fulll relative h-auto flex items-center gap-4">
+          <div className="w-fulll relative h-auto lg:flex items-center gap-4 hidden  ">
+            <SwitchRoutes />
+            <LoginModal />
+          </div>
+          <Bag />
+        </div>
+      </section>
+      <span className="w-full relative flex items-center  mx-auto xl:hidden justify-center">
+        <SearchField />
+      </span>
     </nav>
   );
 };

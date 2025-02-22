@@ -12,7 +12,7 @@ interface SearchFieldProps {
 
 const SearchField: React.FC<SearchFieldProps> = (props) => {
   return (
-    <div className={`relative w-full md:w-[500px]`}>
+    <div className={`relative w-full max-w-[600px] 2xl:max-w-full`}>
       <input
         className={`bg-white w-full rounded-full focus:border-3 focus:border-solid focus:outline-none focus:border-primary text-fontPrimary border pr-4 pl-4 py-2`}
         type="search"
