@@ -12,9 +12,6 @@ export default function Home() {
     { url: "/", imageUrl: "/apple-store.png", altText: "Pan Corner" },
   ];
 
-  const { data: session } = useSession();
-  console.log(session);
-
   return (
     <>
       {/* <HeroBanner banners={banners} /> */}

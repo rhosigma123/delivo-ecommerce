@@ -1,26 +1,50 @@
-import { Product } from "@/types/interface";
+import { useSku } from "@/app/Hooks/useSku";
+import apiClient from "@/lib/axiosInterceptor";
+import { Product, ProductProps, SKU } from "@/types/interface";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export interface ProductProps {
-  data: Product | undefined;
-}
+const whyDelivo = [
+  {
+    id: 1,
+    image: "/favicon",
+    title: "Lightning-Fast Delivery",
+    message:
+      "Get your essentials delivered to your doorstep in record time from nearby Darkstores.",
+  },
+  {
+    id: 2,
+    image: "/favicon",
+    title: "Unbeatable Prices & Deals",
+    message:
+      "Enjoy direct-from-manufacturer pricing with exclusive discounts and offers.",
+  },
+  {
+    id: 3,
+    image: "/favicon",
+    title: "Massive Product Range",
+    message:
+      "Explore 5000+ products across groceries, personal care, household essentials, and more.",
+  },
+];
 
 const ProductDetail: React.FC<ProductProps> = ({ data }) => {
-  // Track active SKU index, default to the first SKU
   const [activeSkuIndex, setActiveSkuIndex] = useState(0);
-
-  // Get active SKU details
   const activeSku = data?.SKU[activeSkuIndex];
+  const { data: session } = useSession();
+  const skuid = activeSku?.id;
+  const { skuData, setSkuData, skuId, setSkuId } = useSku();
 
   return (
-    <div>
+    <div className="sticky top-[100px]">
       <h1 className="text-4xl font-bold text-fontPrimary">
         {(data?.name && data?.name) || ""} -{" "}
         {data?.SKU.map((sku, index) =>
           activeSkuIndex === index ? sku.size || "" : null
         )}
       </h1>
+
       <hr className="my-2" />
 
       <div className="grid gap-4">
@@ -31,7 +55,10 @@ const ProductDetail: React.FC<ProductProps> = ({ data }) => {
           {data?.SKU.map((sku, index) => (
             <div
               key={sku.id}
-              onClick={() => setActiveSkuIndex(index)}
+              onClick={() => {
+                setActiveSkuIndex(index); // Function 1: Set the active SKU
+                setSkuId(sku.id);
+              }}
               className={`cursor-pointer bg-background border-2 rounded-xl flex gap-2 p-2 transition-all ${
                 activeSkuIndex === index
                   ? "border-[#B6C8FF]"
@@ -88,18 +115,31 @@ const ProductDetail: React.FC<ProductProps> = ({ data }) => {
             Add to Bag
           </button>
         </div>
-        <div>
-          <h3>Why shop from Delivo?</h3>
-          <div>
-            <Image src={"/public/apple-store.png"} alt="Fast Delivery" />
-            <div className="grid">
-              <h4>Why shop from Delivo?</h4>
-              <p>
-                Get your essentials delivered to your doorstep in record time
-                from nearby Darkstores.
-              </p>
+
+        <div className=" grid gap-5 mt-5">
+          <h3 className="text-fontPrimary font-bold text-lg">
+            Why shop from Delivo?
+          </h3>
+          {whyDelivo.map((why) => (
+            <div
+              key={why.id}
+              className="grid grid-cols-[50px_1fr] gap-2 items-start"
+            >
+              <Image
+                width={100}
+                height={100}
+                src={why.image}
+                alt={why.title}
+                className="border bg-white rounded-full"
+              />
+              <div className="grid">
+                <h4 className="font-bold text-base text-fontPrimary">
+                  {why.title}
+                </h4>
+                <p className=" text-sm text-fontSecondary">{why.message}</p>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
 
         {/* 

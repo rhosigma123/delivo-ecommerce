@@ -84,6 +84,7 @@ export interface SKU {
   mrp: number;
   retail: number;
   discount: number;
+  information?: Record<string, any>; // ✅ Allows any key-value pairs
 }
 
 export interface Product {
@@ -98,4 +99,8 @@ export interface Product {
 
 export interface VarinatModalProps {
   skus: SKU[];
+}
+
+export interface ProductProps {
+  data: Product | undefined;
 }

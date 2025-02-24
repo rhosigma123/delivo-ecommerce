@@ -1,7 +1,6 @@
 import React from "react";
 import ImageCard from "./ImageCard";
-import Link from "next/link";
-import { ChevronDown, ShoppingBag } from "lucide-react";
+import { ShoppingBag } from "lucide-react";
 import { Product } from "@/types/interface";
 import { useRouter } from "next/navigation";
 import VariantsModal from "../Modals/VariantsModal";
@@ -12,15 +11,7 @@ export interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
   const router = useRouter();
-  const image = data.SKU.map(
-    (sku: any) =>
-      sku.images[0] ||
-      sku.images[1] ||
-      sku.images[2] ||
-      sku.images[3] ||
-      sku.images[4] ||
-      sku.images[5]
-  );
+  const image = data.SKU[0].images[0];
   const handleVariantsSelect = (e: any) => {
     e.stopPropagation();
   };
@@ -29,19 +20,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
 
   return (
     <div
-      onClick={() => router.push(`/product/${data.slug}?pid=${data.id}`)}
+      onClick={() =>
+        router.push(`/product/${data.slug}?pid=${data.id}`)
+      }
       className="grid gap-1 p-3 hover:bg-white rounded-2xl hover:border border border-transparent cursor-pointer content-between"
     >
       <ImageCard
-        imageUrl={"/uploads/" + image || "/"}
+        imageUrl={image || "/"}
         altText={data.name && data.name}
         bgColor={"bg-white"}
       />
       <div className="grid gap-1 content-between">
         <strong className="font-bold text-fontPrimary text-base flex items-center gap-2">
-          {"₹" + (firstSku.retail && firstSku.retail) || ""}
+          {(firstSku.retail !== null ? `₹${firstSku.retail} ` : "") || ""}
           <span className="text-red-500 line-through font-medium text-sm">
-            {"₹" + (firstSku.mrp && firstSku.mrp) || ""}
+            {(firstSku.mrp !== null ? `₹${firstSku.mrp} ` : "") || ""}
           </span>
         </strong>
         <h3 className="text-fontPrimary  break-words px-2 font-extrabold capitalize text-sm w-fit line-clamp-2 leading-5">
@@ -49,7 +42,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
         </h3>
         {data.SKU.length === 1 ? (
           <span className="text-fontSecondary text-sm py-2">
-            {data.SKU.map((sku) => sku.size.slice(0, 20))}
+            {data.SKU.map((sku) => sku.size?.slice(0, 20))}
           </span>
         ) : (
           <div onClick={handleVariantsSelect} className="w-full">

@@ -13,6 +13,7 @@ import Footer from "@/components/Footer/Footer";
 import DownloadAppBanner from "@/components/DownloadAppBanner";
 import Happiness from "@/components/Happiness";
 import { CategoryContextProvider } from "./Context/CategoryContext";
+import { SkuContextProvider } from "./Context/SkuContext";
 // import { CategoryContextProvider } from "./Context/CategoryContext";
 
 const PontanoSans = Pontano_Sans({
@@ -42,15 +43,17 @@ export default function RootLayout({
         />
         <Provider>
           <CategoryContextProvider>
-            <Toaster position="bottom-right" closeButton />
-            <Navbar />
-            {children}
-            <DownloadAppBanner />
-            <Happiness />
-            <PopularSearches />
-            <Footer />
-            <FooterBottom />
-            <DevelopedBy />
+            <SkuContextProvider>
+              <Toaster position="bottom-right" closeButton />
+              <Navbar />
+              {children}
+              <DownloadAppBanner />
+              <Happiness />
+              <PopularSearches />
+              <Footer />
+              <FooterBottom />
+              <DevelopedBy />
+            </SkuContextProvider>
           </CategoryContextProvider>
         </Provider>
       </body>

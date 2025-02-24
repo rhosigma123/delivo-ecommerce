@@ -4,6 +4,8 @@ import ImageCard from "./ImageCard";
 import { CategoryCardProps } from "@/types/interface";
 
 const CategoryCard = ({ data }: CategoryCardProps) => {
+  console.log(data);
+
   return (
     <Link
       href={`/category/${data.slug}?cid=${data.id}`}

@@ -10,6 +10,9 @@ import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import SubCategorySkeleton from "@/components/Skeletons/SubCategorySekeleton";
+import ProductCardsSkeleton from "@/components/Skeletons/ProductCardSkeleton";
+import CategorySkeleton from "@/components/Skeletons/CategorySkeleton";
 
 const CategoryRoute = () => {
   const { data: session } = useSession();
@@ -78,79 +81,87 @@ const CategoryRoute = () => {
 
   return (
     <>
-      <section className="bg-secondary mb-10">
-        <div className="delivo__container relative">
-          <div className="flex flex-wrap h-[40px] delivo__container relative gap-y-3 overflow-hidden">
-            {mainCategoryData?.map((main: any) =>
-              main.Category.map((cat: any) => (
-                <button
-                  onClick={() => handleCategory(cat.id)}
-                  className="border bg-white text-fontPrimary text-sm px-4 py-2 flex items-center"
-                >
-                  {cat.name}
-                </button>
-              ))
-            )}
-            <button
-              onClick={handleMore}
-              type="button"
-              className="absolute top-0 right-0 z-10 flex gap-2 h-full items-center text-fontPrimary  py-2 w-[120px] text-right px-5 bg-gradient-to-r pl-10 from-[#ffffffd3] to-[#ffffff]"
-            >
-              More <ChevronDown size={16} />
-            </button>
-          </div>
-          {isOpen && (
-            <motion.div
-              initial={{ maxHeight: 0, opacity: 0, scale: 0.95 }}
-              animate={
-                isOpen
-                  ? { maxHeight: "500px", opacity: 1, scale: 1 }
-                  : { maxHeight: 0, opacity: 0, scale: 0.95 }
-              }
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="overflow-auto bg-white w-[200px] grid absolute top-9 z-50 right-0"
-            >
+      {mainCategoryData ? (
+        <section className="bg-secondary">
+          <div className="delivo__container relative">
+            <div className="flex flex-wrap h-[40px] delivo__container relative gap-y-3 overflow-hidden">
               {mainCategoryData?.map((main: any) =>
                 main.Category.map((cat: any) => (
                   <button
                     onClick={() => handleCategory(cat.id)}
-                    key={cat.id}
-                    className="border hover:bg-secondary text-fontPrimary text-left text-sm px-4 py-2 flex items-center"
+                    className="border bg-white text-fontPrimary text-sm px-4 py-2 flex items-center"
                   >
                     {cat.name}
                   </button>
                 ))
               )}
-            </motion.div>
-          )}
+              <button
+                onClick={handleMore}
+                type="button"
+                className="absolute top-0 right-0 z-10 flex gap-2 h-full items-center text-fontPrimary  py-2 w-[120px] text-right px-5 bg-gradient-to-r pl-10 from-[#ffffffd3] to-[#ffffff]"
+              >
+                More <ChevronDown size={16} />
+              </button>
+            </div>
+            {isOpen && (
+              <motion.div
+                initial={{ maxHeight: 0, opacity: 0, scale: 0.95 }}
+                animate={
+                  isOpen
+                    ? { maxHeight: "500px", opacity: 1, scale: 1 }
+                    : { maxHeight: 0, opacity: 0, scale: 0.95 }
+                }
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="overflow-auto bg-white w-[200px] grid absolute top-9 z-50 right-0"
+              >
+                {mainCategoryData?.map((main: any) =>
+                  main.Category.map((cat: any) => (
+                    <button
+                      onClick={() => handleCategory(cat.id)}
+                      key={cat.id}
+                      className="border hover:bg-secondary text-fontPrimary text-left text-sm px-4 py-2 flex items-center"
+                    >
+                      {cat.name}
+                    </button>
+                  ))
+                )}
+              </motion.div>
+            )}
+          </div>
+        </section>
+      ) : (
+        <div className="delivo__container">
+          <CategorySkeleton />
         </div>
-      </section>
+      )}
 
       {/* Main Layout */}
       <div className="delivo__container grid grid-cols-[250px_1fr] items-start relative">
-        {/* Sidebar - Category List */}
-        <aside className="max-h-[calc(100vh-100px)] noScrollBar overflow-auto sticky top-[50px]">
-          {categoryData?.Subcategory.map((subCat) => (
-            <CategoryButton
-              key={subCat.id}
-              categoryName={subCat.name}
-              categoryImage={subCat.image}
-              isActive={subCat.id === activeCategory}
-              onClick={() => setActiveCategory(subCat.id)}
-            />
-          ))}
-        </aside>
+        {categoryData ? (
+          <aside className="max-h-[calc(100vh-100px)] noScrollBar overflow-auto sticky top-[50px]">
+            {categoryData?.Subcategory.map((subCat) => (
+              <CategoryButton
+                key={subCat.id}
+                categoryName={subCat.name}
+                categoryImage={subCat.image}
+                isActive={subCat.id === activeCategory}
+                onClick={() => setActiveCategory(subCat.id)}
+              />
+            ))}
+          </aside>
+        ) : (
+          <SubCategorySkeleton />
+        )}
 
-        {/* Main Content - Products */}
-        <main className="grid grid-cols-6 gap-5">
-          {products.length > 0 ? (
-            products.map((product) => (
+        {products.length > 0 ? (
+          <main className="grid grid-cols-6 gap-5">
+            {products.map((product) => (
               <ProductCard key={product.id} data={product} />
-            ))
-          ) : (
-            <p className="text-gray-500 col-span-6">No products available</p>
-          )}
-        </main>
+            ))}
+          </main>
+        ) : (
+          <ProductCardsSkeleton />
+        )}
       </div>
     </>
   );

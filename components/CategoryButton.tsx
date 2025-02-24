@@ -15,9 +15,7 @@ const CategoryButton: React.FC<CategoryBtnProps> = ({
   isActive = false,
   onClick,
 }) => {
-  console.log(categoryImage, categoryName);
-
-  const imgUrl = categoryImage ? BASE_URL + categoryImage : "/placeholder.png";
+  const imgUrl = categoryImage ? BASE_URL + categoryImage : "/favicon";
 
   return (
     <button

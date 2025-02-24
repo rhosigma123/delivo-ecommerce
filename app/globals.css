@@ -111,3 +111,11 @@
 .noScrollBar::-webkit-scrollbar {
   display: none;
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: #00337a;
+  border-radius: 50% !important;
+  height: 40px !important;
+  width: 40px !important;
+}
